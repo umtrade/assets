@@ -1,5 +1,5 @@
 body {
-    padding-top: 50px; /* Padding for .navbar-fixed-top. Change value if navbar height changes. Remove if using .navbar-static-top. */
+    padding-top: ; /* Padding for .navbar-fixed-top. Change value if navbar height changes. Remove if using .navbar-static-top. */
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -48,3 +48,7 @@ form.search {
 	}
 /*below code acts on iframe */
 .resp-iframe { position: absolute; top:relative; left: 0; width: 100%; height: 100%; border: 0; }
+
+.logo{
+	width:15%;
+}
