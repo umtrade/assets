@@ -1,5 +1,5 @@
 body {
-    padding-top: ; /* Padding for .navbar-fixed-top. Change value if navbar height changes. Remove if using .navbar-static-top. */
+    padding-top:50%; /* Padding for .navbar-fixed-top. Change value if navbar height changes. Remove if using .navbar-static-top. */
 }
 
 h1, h2, h3, h4, h5, h6,
